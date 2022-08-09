@@ -52,6 +52,22 @@ public class MovieShowService
         return movies;
     }
 
+    public List<Movie> getFeaturedMoviesWithTitle(String t) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("title").regex(t).and("featuredMovie").is(true));
+
+        List<Movie> movies = mongoTemplate.find(query, Movie.class);
+        return movies;
+    }
+
+    public List<Movie> getFeaturedShowsWithTitle(String t) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("title").regex(t).and("featuredShow").is(true));
+
+        List<Movie> movies = mongoTemplate.find(query, Movie.class);
+        return movies;
+    }
+
     public List<Movie> getFeaturedMovies(Boolean fm) {
         Query query = new Query();
         query.addCriteria(Criteria.where("featuredMovie").is(fm));
@@ -64,6 +80,7 @@ public class MovieShowService
     {
         Query query = new Query();
         query.addCriteria(Criteria.where("featuredShow").is(fs));
+
 
         List<Movie> movies = mongoTemplate.find(query, Movie.class);
         return movies;
@@ -110,5 +127,10 @@ public class MovieShowService
 
         Movie updatedMovie = repository.save(movie.get());
         return updatedMovie;
+    }
+
+    public List<Movie> getAllVideos() {
+        List<Movie> videos = repository.findAll();
+        return videos;
     }
 }

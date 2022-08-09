@@ -11,11 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class MovieShowController
 {
     @Autowired
     private MovieShowService service;
+
+    @GetMapping("/allvideos")
+    public ResponseEntity<Movie> getallVideos()
+    {
+        return new ResponseEntity(service.getAllVideos(), HttpStatus.OK);
+    }
+
 
     @GetMapping("/movies")
     public ResponseEntity<Movie> getmovies()
@@ -45,11 +53,25 @@ public class MovieShowController
         return new ResponseEntity(service.getFeaturedMovies(fm), HttpStatus.OK);
     }
 
+    @GetMapping("/movies/featuredMovieWithTitle")
+    public ResponseEntity<Movie> getFeaturedMoviesWithTitle(@RequestParam(value="titl") String t)
+    {
+        //var customizedResponse = new CustomizedResponse("A list of movies with rating :", service.getMoviesWithRating(r));
+        return new ResponseEntity(service.getFeaturedMoviesWithTitle(t), HttpStatus.OK);
+    }
+
     @GetMapping("/shows/featuredShow")
     public ResponseEntity<Movie> getfeaturedshows(@RequestParam(value="featured") Boolean fs)
     {
         //var customizedResponse = new CustomizedResponse("A list of movies with rating :", service.getMoviesWithRating(r));
         return new ResponseEntity(service.getFeaturedShows(fs), HttpStatus.OK);
+    }
+
+    @GetMapping("/movies/featuredShowWithTitle")
+    public ResponseEntity<Movie> getFeaturedShowsWithTitle(@RequestParam(value="titl") String t)
+    {
+        //var customizedResponse = new CustomizedResponse("A list of movies with rating :", service.getMoviesWithRating(r));
+        return new ResponseEntity(service.getFeaturedShowsWithTitle(t), HttpStatus.OK);
     }
 
     @GetMapping("/movies/{id}")

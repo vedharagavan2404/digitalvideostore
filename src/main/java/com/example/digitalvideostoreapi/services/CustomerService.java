@@ -49,6 +49,14 @@ public class CustomerService implements UserDetailsService {
         return customer;
     }
 
+    public String getUserId(String email) {
+        CustomerModel customer = customerRepository.findByEmail(email);
+
+        return customer.getId();
+    }
+
+
+
     public List<CustomerModel> getCustomers()
     {
         return customerRepository.findAll();
@@ -62,6 +70,9 @@ public class CustomerService implements UserDetailsService {
         String userN = foundUser.getUserName();
         String emailId = foundUser.getEmail();
         String password = foundUser.getPassword();
+        String id = foundUser.getId();
         return new User(emailId,password, new ArrayList<>());
     }
+
+
 }
