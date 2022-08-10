@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://digital-video-streaming-store.herokuapp.com")
 @RestController
 public class MovieShowController
 {

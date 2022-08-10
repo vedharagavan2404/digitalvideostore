@@ -46,7 +46,7 @@ public class MovieShowService
 
     public List<Movie> getMoviesWithTitle(String t) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("title").regex(t));
+        query.addCriteria(Criteria.where("title").regex(t,"i"));
 
         List<Movie> movies = mongoTemplate.find(query, Movie.class);
         return movies;
@@ -54,7 +54,7 @@ public class MovieShowService
 
     public List<Movie> getFeaturedMoviesWithTitle(String t) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("title").regex(t).and("featuredMovie").is(true));
+        query.addCriteria(Criteria.where("title").regex(t,"i").and("featuredMovie").is(true));
 
         List<Movie> movies = mongoTemplate.find(query, Movie.class);
         return movies;
@@ -62,7 +62,7 @@ public class MovieShowService
 
     public List<Movie> getFeaturedShowsWithTitle(String t) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("title").regex(t).and("featuredShow").is(true));
+        query.addCriteria(Criteria.where("title").regex(t,"i").and("featuredShow").is(true));
 
         List<Movie> movies = mongoTemplate.find(query, Movie.class);
         return movies;
