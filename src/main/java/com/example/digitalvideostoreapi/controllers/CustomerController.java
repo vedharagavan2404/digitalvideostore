@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-@CrossOrigin(origins = "http://digital-video-streaming-store.herokuapp.com")
+@CrossOrigin(origins = "https://digital-video-store-frontend.herokuapp.com")
 @Controller
 public class CustomerController {
 
